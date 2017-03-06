@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Registrate para continuar</h1>
+            <div class="account-wall">
+                <form class="form-signin">
+                    <input type="text" class="form-control" placeholder="Username" required autofocus
+                        ng-model="usernameSignup">
+
+                    <input type="text" class="form-control" placeholder="Email" required autofocus
+                           ng-model="email">
+
+                    <input type="text" class="form-control" placeholder="Nombre" required autofocus
+                           ng-model="firstName">
+
+                    <input type="text" class="form-control" placeholder="Apellido" required autofocus
+                           ng-model="lastName">
+
+                    <input type="password" class="form-control" placeholder="Password" required
+                           ng-model="passwordSignup">
+
+                    <input type="text" class="form-control" placeholder="Nickname" required autofocus
+                           ng-model="nickname">
+
+                    <label for="birthday">Fecha de Nacimiento</label>
+                    <input type="date" name="birthday" required autofocus
+                           ng-model="birthday" id="birthday">
+
+                    <br>
+                    <label for="gender">Genero</label>
+                    <select ng-model="selectedGender" id="gender" required autofocus>
+                        <option ng-repeat="g in genders" value="{{g.value}}">{{g.name}}</option>
+                    </select>
+
+                    <label for="profile">Perfil</label>
+                    <select ng-model="selectedType" id="profile" required autofocus>
+                        <option ng-repeat="type in types" value="{{type.value}}">{{type.name}}</option>
+                    </select>
+
+                    <br>
+                    <label for="country">Pais</label>
+                    <select ng-model="selectedCountry" id="country" required autofocus>
+                        <option ng-repeat="c in countries" value="{{c.value}}">{{c.name}}</option>
+                    </select>
+
+                    <label for="city">Ciudad</label>
+                    <select ng-model="selectedCity" id="city" required autofocus>
+                        <option ng-repeat="city in cities" value="{{city.value}}">{{city.name}}</option>
+                    </select>
+
+                    <button class="btn btn-lg btn-block btn-mzc" type="submit" ng-click="signup()">
+                        Crear Cuenta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

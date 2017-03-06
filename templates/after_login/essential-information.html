@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>INFORMACIÓN ESENCIAL</h3>
+        </div>
+
+        <div class="row">
+            <h6>*Mínimo 8 videos, máxmo 12. Máximo por video: 3 minutos</h6>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+            <table class="table table-striped col-md-6">
+                <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Título del vídeo</th>
+                    <th class="text-center">Carátula</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="video in videos">
+                    <td class="text-center">{{$index + 1}}</td>
+                    <td class="text-center">{{video.name}}</td>
+                    <td class="text-center"><img src="{{video.photo_url}}" width="56" height="56"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
+            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
+            data-target="#newVideo">Nuevo video</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newVideo" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar nuevo video</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Nombre" required autofocus
+                           ng-model="nameVideo">
+
+                    <input type="text" class="form-control" placeholder="URL del video" required autofocus
+                           ng-model="urlVideo">
+
+                    <input type="text" class="form-control" placeholder="URL de la portada" required autofocus
+                           ng-model="photoUrl">
+
+                    <label for="dateVideo">Fecha de publicación</label>
+                    <input type="date" name="dateVideo" required autofocus
+                           ng-model="dateVideo" id="dateVideo">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-lg btn-block btn-mzc" ng-click="saveVideo()">Guardar</button>
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
