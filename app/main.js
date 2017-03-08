@@ -19,7 +19,7 @@ main.provider('url', function urlProvider() {
 //Set constants
 main.constant('CONSTANTS', {
     //Backend information
-    url_server: 'http://192.168.0.3:8000',
+    url_server: 'http://demendezr.pythonanywhere.com',
     clientId: 'clientweb2231',
     clientSecret: 'secretweb2231'
 });
