@@ -5,7 +5,7 @@
         </div>
 
         <div class="row">
-            <h6>*Mínimo 8 videos, máxmo 12. Máximo por video: 3 minutos</h6>
+            <h6>*Mínimo 8 videos, máximo 12. Máximo por video: 3 minutos</h6>
         </div>
 
         <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
@@ -15,13 +15,23 @@
                     <th class="text-center">#</th>
                     <th class="text-center">Título del vídeo</th>
                     <th class="text-center">Carátula</th>
+                    <th class="text-center">Detalles</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="video in videos">
-                    <td class="text-center">{{$index + 1}}</td>
+                    <td class="text-center">
+                        <a href="" ng-click="addSurvey(video)" ng-if="video.survey.length == 0">
+                            <i class="fa fa-edit">Agregar Encuesta</i>
+                        </a>
+                    </td>
                     <td class="text-center">{{video.name}}</td>
                     <td class="text-center"><img src="{{video.photo_url}}" width="56" height="56"></td>
+                    <td class="text-center">
+                        <a href="" ng-click="seeSurvey(video)" ng-if="video.survey.length > 0">
+                            <i class="fa fa-sticky-note">Ver encuesta</i>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -33,7 +43,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Add New Video-->
     <div class="modal fade" id="newVideo" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -60,6 +70,130 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn-lg btn-block btn-mzc" ng-click="saveVideo()">Guardar</button>
                     <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal See Survey from Video-->
+    <div class="modal fade" id="seeSurvey" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Video: {{currentVideo.name}}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h4><strong>Encuesta:</strong> {{currentVideo.survey[0].description}}</h4>
+                    <hr>
+
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="question in currentVideo.survey[0].questions">
+                            <td>
+                                <h5><strong>{{question.description}}</strong></h5>
+                                <table class="table table-striped col-md-6">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Respuestas</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td ng-repeat="answer in question.answers" class="text-center">
+                                            {{answer.description}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Survey to Video-->
+    <div class="modal fade" id="addSurvey" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Video: {{currentVideo.name}}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label for="nameSurvey">Nombre de la Encuesta</label>
+                    <input type="text" class="form-control" placeholder="Nombre encuesta" required autofocus
+                           ng-model="nameSurvey" id="nameSurvey">
+                    <hr>
+
+                    <h4>**Agregar Preguntas</h4>
+                    <a href="" data-toggle="collapse" data-target="#helpQuestion">
+                        <i class="fa fa-info-circle"> Información</i>
+                    </a>
+                    <div id="helpQuestion" class="collapse">
+                        <h6>Para agregar una pregunta con sus respuestas, debes seguir los siguientes pasos:</h6>
+                        <ul>
+                            <li><h6>1. (Obligatorio) Escribir la descripción de la pregunta</h6></li>
+                            <li><h6>2. (Obligatorio) Escribir una respuesta para la pregunta</h6></li>
+                            <li><h6>3. (Obligatorio) Dar click en el icono <i class="fa fa-plus-circle"></i></h6></li>
+                            <li><h6>4. (Opcional) Ingresar otra respuesta y dar click en el icono
+                                <i class="fa fa-plus-circle"></i>, puedes ingresar las respuestas que desees</h6>
+                            </li>
+                            <li><h6>5. (Obligatorio) Cuando ya no desees agregar mas respuestas, debes dar click en el
+                                icono <i class="fa fa-check"></i> y de esa manera podras volver a registrar una siguiente
+                                pregunta</h6>
+                            </li>
+                            <li><h6>6. Finalmente para guardar toda la encuesta, debes dar click en el boton Guardar</h6></li>
+                        </ul>
+                    </div>
+
+                    <input type="text" class="form-control" placeholder="Descripción pregunta" required autofocus
+                           ng-model="nameQuestion" ng-disabled="isFinishQuestion">
+
+                    <input type="text" class="form-control" placeholder="Respuesta" required autofocus
+                           ng-model="answerQuestion">
+
+                    <a href="" ng-click="addQuestion()">
+                        <i class="fa fa-plus-circle fa-2x"></i>
+                    </a>
+
+                    <a href="" ng-click="finishAddQuestion()">
+                        <i class="fa fa-check fa-2x"></i>
+                    </a>
+
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="question in currentQuestions">
+                            <td>
+                                <h5><strong>{{question.description}}</strong></h5>
+                                <table class="table table-striped col-md-6">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Respuestas</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td ng-repeat="answer in question.answers" class="text-center">
+                                            {{answer.description}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" ng-click="saveSurvey()">Guardar</button>
                 </div>
             </div>
         </div>

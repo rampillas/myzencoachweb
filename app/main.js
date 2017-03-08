@@ -1,5 +1,5 @@
 var main = angular.module("mainModule",["ngRoute","homeModule","essentialInformationModule","minfulnessModule",
-    "authorizationModule","storageModule","encodeModule","videosModule"]);
+    "authorizationModule","storageModule","encodeModule","videosModule","surveysModule"]);
 
 //Set base url
 main.provider('url', function urlProvider() {
@@ -19,7 +19,7 @@ main.provider('url', function urlProvider() {
 //Set constants
 main.constant('CONSTANTS', {
     //Backend information
-    url_server: 'http://demendezr.pythonanywhere.com',
+    url_server: 'http://192.168.0.3:8000',
     clientId: 'clientweb2231',
     clientSecret: 'secretweb2231'
 });
