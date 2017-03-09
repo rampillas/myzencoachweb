@@ -100,7 +100,57 @@ home.controller("homeController",function($scope,$location,$rootScope,authorizat
         else
             alert("Usuario y password son obligatorios");
     }
+});
 
 
+home.controller('forgotPasswordController',function ($scope,authorization,$routeParams,$location)
+{
+    var token = $routeParams.token;
+    $scope.token = [];
+    $scope.password = "";
 
+    try{
+        $scope.token = ymencode.decodeUtf8base64(token).split(' ');
+    }
+    catch(err) {
+        alert("Error en el acceso, vuelve a entrar en la opcion Olvide Password para que recibas otro email");
+        $location.path('/');
+    }
+
+    //change user password
+    $scope.doChange = function () {
+        if($scope.password==""){
+            alert("Password es necesario");
+            return;
+        }
+
+        if($scope.token.length > 1){
+            authorization.changePassword({
+                username: $scope.token[2],
+                data: {password: $scope.password, token: $scope.token[0], uid:$scope.token[1]}
+            })
+                .success(function(r){
+                    if(r.detail){
+                        alert("El password fue cambiado con exito");
+                        $location.path('/');
+                    }
+                    else if(r.error == 'token used'){
+                        alert('El acceso ya ha sido utilizado');
+                    }
+                    else if(r.error == 'token expired'){
+                        alert('El acceso ha expirado');
+                    }
+                    else{
+                        alert('Hubo un error inesperado, intenta nuevamente');
+                    }
+
+                })
+                .error(function(e){
+                    console.clear();
+                });
+        }
+        else
+            alert("El acceso no es el correcto");
+
+    }
 });

@@ -17,6 +17,9 @@ angular.module('authorizationModule').factory("authorization",function($http,url
         setAuthHeaders: function(accessToken) {
             this.headersSet = true;
             $http.defaults.headers.common.Authorization = "Bearer " + accessToken;
+        },
+        changePassword: function(user) {
+            return $http.put(url.get() + '/users/' + user.username + '/password/',user.data);
         }
     };
     return auth;

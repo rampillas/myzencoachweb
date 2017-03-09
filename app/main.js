@@ -51,6 +51,11 @@ main.config(['$routeProvider','urlProvider','CONSTANTS', function($routeProvider
             templateUrl: './templates/signup.html?v='+(new Date()).valueOf(),
             controller: 'homeController'
         })
+        //Recover Password
+        .when('/recover/:token', {
+            templateUrl: './templates/forgot-password.html?v='+(new Date()).valueOf(),
+            controller: 'forgotPasswordController'
+        })
         //Essential Information
         .when('/essential', {
             templateUrl: './templates/after_login/essential-information.html?v='+(new Date()).valueOf(),
