@@ -2,9 +2,15 @@ angular.module('authorizationModule', []);
 angular.module('authorizationModule').factory("authorization",function($http,url,CONSTANTS){
     var auth = {
         login: function(data) {
-            return $http.post(url.get() + '/oauth/token/?client_id='+CONSTANTS.clientId+'&client_secret='+
-                CONSTANTS.clientSecret+'&username='+encodeURIComponent(data.username)+'&password='+
-                encodeURIComponent(data.password)+'&grant_type=password&scope=read+write');
+            var jsonData = {
+                client_id: CONSTANTS.clientId,
+                client_secret: CONSTANTS.clientSecret,
+                username: data.username,
+                password: data.password,
+                grant_type: "password",
+                scope: "read+write"
+            };
+            return $http.post(url.get() + '/login/',jsonData);
         },
         logout: function(accessToken) {
             return $http.post(url.get() + '/oauth/revoke_token/?client_id='+CONSTANTS.clientId+
