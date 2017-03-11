@@ -59,14 +59,17 @@ essential.controller("essentialInformationController",function($scope,$location,
         jQuery("#addSurvey").modal("show");
     }
 
+    $scope.answerIsRight = false;
     $scope.addQuestion = function () {
         if($scope.nameQuestion != undefined && $scope.nameQuestion != "")
         {
             if($scope.answerQuestion != undefined && $scope.answerQuestion != "")
             {
                 $scope.isFinishQuestion = true;
-                $scope.currentAnswers.push({description:$scope.answerQuestion});
+                $scope.currentAnswers.push({description:$scope.answerQuestion,
+                                            is_right: $scope.answerIsRight});
                 $scope.answerQuestion = "";
+                $scope.answerIsRight = false;
             }
             else
                 alert("Debe registrar al menos una respuesta para la pregunta");
@@ -76,6 +79,7 @@ essential.controller("essentialInformationController",function($scope,$location,
     }
 
     $scope.finishAddQuestion = function () {
+        $scope.answerIsRight = false;
         $scope.currentQuestions.push({description:$scope.nameQuestion,answers:$scope.currentAnswers});
         $scope.isFinishQuestion = false;
         $scope.currentAnswers = [];

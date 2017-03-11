@@ -103,7 +103,7 @@
                                     <tbody>
                                     <tr>
                                         <td ng-repeat="answer in question.answers" class="text-center">
-                                            {{answer.description}}
+                                            {{answer.description}} <span ng-if="answer.is_right">(Resp. Correcta)</span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -137,13 +137,14 @@
 
                     <h4>**Agregar Preguntas</h4>
                     <a href="" data-toggle="collapse" data-target="#helpQuestion">
-                        <i class="fa fa-info-circle"> Información</i>
+                        <i class="fa fa-info-circle"> Ayuda</i>
                     </a>
                     <div id="helpQuestion" class="collapse">
                         <h6>Para agregar una pregunta con sus respuestas, debes seguir los siguientes pasos:</h6>
                         <ul>
                             <li><h6>1. (Obligatorio) Escribir la descripción de la pregunta</h6></li>
-                            <li><h6>2. (Obligatorio) Escribir una respuesta para la pregunta</h6></li>
+                            <li><h6>2. (Obligatorio) Escribir una respuesta para la pregunta, en el caso de que la respuesta
+                                    sea la correcta, se debe marcar el check "Es la respuesta correcta"</h6></li>
                             <li><h6>3. (Obligatorio) Dar click en el icono <i class="fa fa-plus-circle"></i></h6></li>
                             <li><h6>4. (Opcional) Ingresar otra respuesta y dar click en el icono
                                 <i class="fa fa-plus-circle"></i>, puedes ingresar las respuestas que desees</h6>
@@ -161,6 +162,12 @@
 
                     <input type="text" class="form-control" placeholder="Respuesta" required autofocus
                            ng-model="answerQuestion">
+
+                    <label>Es la respuesta correcta:
+                        <input type="checkbox" ng-model="answerIsRight">
+                    </label>
+
+                    <br>
 
                     <a href="" ng-click="addQuestion()">
                         <i class="fa fa-plus-circle fa-2x"></i>
@@ -183,7 +190,7 @@
                                     <tbody>
                                     <tr>
                                         <td ng-repeat="answer in question.answers" class="text-center">
-                                            {{answer.description}}
+                                            {{answer.description}} <span ng-if="answer.is_right">(Resp. Correcta)</span>
                                         </td>
                                     </tr>
                                     </tbody>
