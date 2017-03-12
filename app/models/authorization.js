@@ -26,6 +26,9 @@ angular.module('authorizationModule').factory("authorization",function($http,url
         },
         changePassword: function(user) {
             return $http.put(url.get() + '/users/' + user.username + '/password/',user.data);
+        },
+        forgotPassword: function (data) {
+            return $http.post(url.get() + '/password-recovery/',data);
         }
     };
     return auth;

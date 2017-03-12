@@ -1,4 +1,4 @@
-var home = angular.module("homeModule",[]);
+var home = angular.module("homeModule",["ngRoute"]);
 
 home.controller("homeController",function($scope,$location,$rootScope,authorization,sessionStorage,encodeService){
 
@@ -103,14 +103,14 @@ home.controller("homeController",function($scope,$location,$rootScope,authorizat
 });
 
 
-home.controller('forgotPasswordController',function ($scope,authorization,$routeParams,$location)
+home.controller('changePasswordController',function ($scope,authorization,$routeParams,$location,encodeService)
 {
     var token = $routeParams.token;
     $scope.token = [];
     $scope.password = "";
 
     try{
-        $scope.token = ymencode.decodeUtf8base64(token).split(' ');
+        $scope.token = encodeService.decodeUtf8base64(token).split(' ');
     }
     catch(err) {
         alert("Error en el acceso, vuelve a entrar en la opcion Olvide Password para que recibas otro email");
@@ -120,7 +120,7 @@ home.controller('forgotPasswordController',function ($scope,authorization,$route
     //change user password
     $scope.doChange = function () {
         if($scope.password==""){
-            alert("Password es necesario");
+            alert("El Password es necesario");
             return;
         }
 
@@ -152,5 +152,28 @@ home.controller('forgotPasswordController',function ($scope,authorization,$route
         else
             alert("El acceso no es el correcto");
 
+    }
+});
+
+home.controller('forgotPasswordController',function ($scope,$location,authorization)
+{
+    $scope.username = "";
+
+    $scope.sent = function () {
+        if($scope.username != ""){
+            authorization.forgotPassword({
+                username: $scope.username
+            })
+                .success(function (r) {
+                    alert("Te hemos enviado un email a tu correo. Si no lo vez en la bandeja de entrada, revisa por favor en la carpeta de Spam.");
+                    $location.path("/");
+                })
+                .error(function (e) {
+                    console.clear();
+                    alert("Hubo un error inesperado, intenta nuevamente");
+                })
+        }
+        else
+            alert("El username es necesario");
     }
 });

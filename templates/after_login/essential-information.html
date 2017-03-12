@@ -16,6 +16,7 @@
                     <th class="text-center">Título del vídeo</th>
                     <th class="text-center">Carátula</th>
                     <th class="text-center">Detalles</th>
+                    <th class="text-center"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,11 @@
                     <td class="text-center">
                         <a href="" ng-click="seeSurvey(video)" ng-if="video.survey.length > 0">
                             <i class="fa fa-sticky-note">Ver encuesta</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" ng-click="deleteVideo(video.name)">
+                            <i class="fa fa-remove"></i>
                         </a>
                     </td>
                 </tr>

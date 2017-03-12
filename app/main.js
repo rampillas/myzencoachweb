@@ -51,10 +51,15 @@ main.config(['$routeProvider','urlProvider','CONSTANTS', function($routeProvider
             templateUrl: './templates/signup.html?v='+(new Date()).valueOf(),
             controller: 'homeController'
         })
-        //Recover Password
-        .when('/recover/:token', {
+        //Forgot Password
+        .when('/forgot', {
             templateUrl: './templates/forgot-password.html?v='+(new Date()).valueOf(),
             controller: 'forgotPasswordController'
+        })
+        //Change Password
+        .when('/recover/:token', {
+            templateUrl: './templates/change-password.html?v='+(new Date()).valueOf(),
+            controller: 'changePasswordController'
         })
         //Essential Information
         .when('/essential', {

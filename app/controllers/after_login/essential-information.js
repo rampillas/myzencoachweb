@@ -72,10 +72,10 @@ essential.controller("essentialInformationController",function($scope,$location,
                 $scope.answerIsRight = false;
             }
             else
-                alert("Debe registrar al menos una respuesta para la pregunta");
+                alert("Debes registrar al menos una respuesta para la pregunta");
         }
         else
-            alert("Escriba el nombre de la Encuesta");
+            alert("Escribe el nombre de la Encuesta");
     }
 
     $scope.finishAddQuestion = function () {
@@ -121,6 +121,20 @@ essential.controller("essentialInformationController",function($scope,$location,
         jQuery("#seeSurvey").modal("show");
     }
 
+    //DELETE VIDEO
+    $scope.deleteVideo = function (name) {
+        videos.removeVideo({
+            name: name
+        })
+            .success(function (r) {
+                $scope.getVideosUser();
+            })
+            .error(function (e) {
+                console.clear();
+                alert("Hubo un error inesperado, intenta nuevamente");
+            })
+    }
+    
     $rootScope.verifyLogin();
     $scope.getVideosUser();
 });
