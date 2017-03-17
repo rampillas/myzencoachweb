@@ -5,25 +5,33 @@
         </div>
 
         <div class="row">
-            <h6>Ejercicios de semana</h6>
+            <h6>Planes de bienestar para los usuarios</h6>
         </div>
 
         <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
             <table class="table table-striped col-md-6">
                 <thead>
                 <tr>
-                    <th class="text-center">#</th>
-                    <th class="text-center">Título</th>
-                    <th class="text-center">Realizada por</th>
-                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Plan</th>
+                    <th class="text-center">Fecha de activación</th>
+                    <th class="text-center">Detalles</th>
+                    <th class="text-center"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="question in questions">
-                    <td class="text-center">{{$index + 1}}</td>
-                    <td class="text-center">{{question.title}}</td>
-                    <td class="text-center"><i class="fa fa-user"></i></td>
-                    <td class="text-center">{{question.description}}</td>
+                <tr ng-repeat="plan in plansData">
+                    <td class="text-center">{{plan.description}}</td>
+                    <td class="text-center">{{plan.date | date:'yyyy/MM/dd'}}</td>
+                    <td class="text-center">
+                        <a href="" ng-click="seePlan(plan)" ng-if="plansData.length > 0">
+                            <i class="fa fa-sticky-note">Ver detalles</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" ng-click="deletePlan(plan.description)">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -31,30 +39,138 @@
 
         <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
             <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
-                    data-target="#newQuestion">Nueva pregunta</button>
+                    data-target="#newPlan">Nuevo plan</button>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="newQuestion" role="dialog">
+    <!-- Modal Add new Plan-->
+    <div class="modal fade" id="newPlan" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content col-md-offset-3 col-md-6 col-md-offset-3">
+            <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Agregar nueva pregunta</h4>
+                    <h4 class="modal-title">Agregar nuevo plan</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Titulo" required autofocus
-                           ng-model="title">
+                    <label for="description">Nombre del plan</label>
+                    <input type="text" class="form-control" placeholder="Nombre plan" required autofocus
+                           ng-model="description" id="description">
 
-                    <input type="text" class="form-control" placeholder="Descripcion" required autofocus
-                           ng-model="description">
+                    <label for="date">Fecha de activación del plan</label>
+                    <input type="date" class="form-control" ng-model="date" id="date">
+
+                    <hr>
+                    <h4>**Agregar Ejercicios</h4>
+
+                    <a href="" data-toggle="collapse" data-target="#helpExercise">
+                        <i class="fa fa-info-circle"> Ayuda</i>
+                    </a>
+                    <div id="helpExercise" class="collapse">
+                        <h6>Para agregar un ejercicio con sus preguntas, debes seguir los siguientes pasos:</h6>
+                        <ul>
+                            <li><h6>1. (Obligatorio) Elegir el número de semana</h6></li>
+                            <li><h6>2. (Obligatorio) Escribir una descripción para el ejercicio</h6></li>
+                            <li><h6>3. (Obligatorio) Ingresar la url del audio</h6></li>
+                            <li><h6>4. (Obligatorio) Escribir las instrucciones para el ejercicio</h6></li>
+                            <li><h6>5. (Obligatorio) Escribir una pregunta</h6></li>
+                            <li><h6>6. (Obligatorio) Dar click en el icono <i class="fa fa-plus-circle"></i></h6></li>
+                            <li><h6>7. (Opcional) Ingresar otra pregunta y dar click en el icono
+                                <i class="fa fa-plus-circle"></i>, puedes ingresar las preguntas que desees</h6>
+                            </li>
+                            <li><h6>8. (Obligatorio) Cuando ya no desees agregar mas preguntas, debes dar click en el
+                                icono <i class="fa fa-check"></i> y de esa manera podras volver a registrar otro ejercicio
+                                para el plan</h6>
+                            </li>
+                            <li><h6>9. Finalmente para activar todo el plan de las x semanas, debes dar click en el
+                                boton Activar</h6></li>
+                        </ul>
+                    </div>
+
+                    <br>
+                    <label for="date">Semana</label>
+                    <select ng-model="selectedWeek">
+                        <option ng-repeat="item in numberWeeks" value="{{item.value}}">{{item.name}}</option>
+                    </select>
+
+                    <input type="text" class="form-control" placeholder="Descripción" required autofocus
+                           ng-model="descriptionExercise" id="descriptionEjercise">
+
+                    <input type="text" class="form-control" placeholder="URL del audio" required autofocus
+                           ng-model="urlAudio">
+
+                    <input type="text" class="form-control" placeholder="Instrucciones" required autofocus
+                           ng-model="instructions">
+
+                    <h4>Preguntas para el ejercicio</h4>
+
+                    <input type="text" class="form-control" placeholder="Descripción pregunta" required autofocus
+                           ng-model="question">
+
+                    <a href="" ng-click="addQuestion()">
+                        <i class="fa fa-plus-circle fa-2x"></i>
+                    </a>
+
+                    <a href="" ng-click="addExercise()">
+                        <i class="fa fa-check fa-2x"></i>
+                    </a>
+
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="week in weeks">
+                            <td>
+                                <h5><strong>{{week.description}}</strong></h5>
+                            </td>
+                        </tr>
+                    </table>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-lg btn-block btn-mzc" ng-click="addQuestion()">Agregar</button>
-                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn-lg btn-block btn-mzc" ng-click="activePlan()">Activar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal See Details from Plan-->
+    <div class="modal fade" id="seePlan" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Plan: {{currentPlan.description}}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h4><strong>Fecha de activación:</strong> {{currentPlan.date}}</h4>
+                    <hr>
+
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="week in currentPlan.exercises">
+                            <td>
+                                <h5><strong>{{week.description}}</strong></h5>
+                                <h5><strong>Semana: {{week.week}}</strong></h5>
+                                <h5><strong>Instrucciones: {{week.instructions}}</strong></h5>
+                                <table class="table table-striped col-md-6">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Preguntas</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="question in week.question_exercises">
+                                        <td class="text-center">
+                                            {{question.question}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

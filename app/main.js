@@ -1,5 +1,5 @@
 var main = angular.module("mainModule",["ngRoute","homeModule","essentialInformationModule","minfulnessModule",
-    "authorizationModule","storageModule","encodeModule","videosModule","surveysModule"]);
+    "authorizationModule","storageModule","encodeModule","videosModule","surveysModule","plansModule"]);
 
 //Set base url
 main.provider('url', function urlProvider() {
