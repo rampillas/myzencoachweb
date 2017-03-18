@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>SOLUCIONES CORPORATIVAS</h3>
+        </div>
+
+        <div class="row">
+            <h6>Dilemas</h6>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+
+            <div>
+                <input type="text" placeholder="Ingresa Tu Dilema" ng-model="dilema.ingresar">
+            </div>
+            <div>
+                <input type="text" placeholder="Usuario" ng-model="dilema.usuario">
+            </div>
+
+            <button type="buttom" ng-click=addDilema()>Agregar Dilema</button>
+        </div>
+
+        {{Dilemas}}
+        <div>
+            <h4>Dilemas Ingresados</h4>
+            <span>
+                {{dilema.ingresar}}
+            </span>
+        </div>
+
+    </div>
+</div>
