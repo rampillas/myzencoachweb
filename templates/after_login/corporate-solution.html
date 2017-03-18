@@ -17,16 +17,33 @@
                 <input type="text" placeholder="Usuario" ng-model="dilema.usuario">
             </div>
 
-            <button type="buttom" ng-click=addDilema()>Agregar Dilema</button>
+            <button type="buttom" ng-click="addDilema()">Agregar Dilema</button>
         </div>
 
-        {{Dilemas}}
+
         <div>
             <h4>Dilemas Ingresados</h4>
             <span>
                 {{dilema.ingresar}}
             </span>
+            <span>
+                {{dilema.usuario}}
+            </span>
         </div>
 
+        <div>
+            <table>
+                <tr>
+                    <td class="text-center text-danger">Dilema </td>
+                    <td>Usuario</td>
+                </tr>
+
+                <tr ng-repeat="item in dilemas">
+                    <td>{{item.dilema}}</td>
+                    <td>{{item.usuario}}</td>
+                </tr>
+
+            </table>
+        </div>
     </div>
 </div>
