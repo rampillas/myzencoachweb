@@ -18,23 +18,17 @@
                     <th class="text-center"></th>
                 </tr>
                 </thead>
-                <div>
-                    <h4>Dilemas Ingresados</h4>
-                    <span>
-                        {{dilema.usuario}}
-                    </span>
-                    <span>
-                        {{dilema.titulo}}
-                    </span>
-                    <span>
-                        {{dilema.descripcion}}
-                    </span>
-                </div>
+
                 <tbody>
                 <tr ng-repeat="item in dilemas">
-                    <td class="text-center">{{item.usuario}}</td>
-                    <td class="text-center">{{item.titulo}}</td>
-                    <td class="text-center">{{item.descripcion}}</td>
+                    <td class="text-center">{{item.Quien}}</td>
+                    <td class="text-center">{{item.Titulo}}</td>
+                    <td class="text-center">{{item.Descripcion}}</td>
+                    <td>
+                        <a href="" ng-click="">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

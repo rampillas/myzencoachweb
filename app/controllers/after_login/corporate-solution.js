@@ -11,5 +11,7 @@ corporate.controller("corporateSolutionController",function($scope,solutions){
             Titulo: $scope.dilema.titulo,
             Descripcion: $scope.dilema.descripcion
         })
+        $('#newDilema').hide();
+        $('.modal-backdrop').hide();
     }
 });
