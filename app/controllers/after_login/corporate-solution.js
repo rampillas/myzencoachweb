@@ -7,9 +7,9 @@ corporate.controller("corporateSolutionController",function($scope,solutions){
 
     $scope.addDilema = function () {
         $scope.dilemas.push({
-            dilema: $scope.dilema.ingresar,
-            usuario: $scope.dilema.usuario
+            Quien: $scope.dilema.usuario,
+            Titulo: $scope.dilema.titulo,
+            Descripcion: $scope.dilema.descripcion
         })
     }
-
 });
