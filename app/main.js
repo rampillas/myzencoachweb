@@ -1,5 +1,6 @@
 var main = angular.module("mainModule",["ngRoute","homeModule","essentialInformationModule","minfulnessModule",
-    "authorizationModule","storageModule","encodeModule","videosModule","surveysModule","plansModule"]);
+    "authorizationModule","storageModule","encodeModule","videosModule","surveysModule","plansModule",
+    "personalizationModule","remindersModule","usersModule", "stressModule","recomendationsModule"]);
 
 //Set base url
 main.provider('url', function urlProvider() {
@@ -70,6 +71,26 @@ main.config(['$routeProvider','urlProvider','CONSTANTS', function($routeProvider
         .when('/minfulness', {
             templateUrl: './templates/after_login/minfulness.html?v='+(new Date()).valueOf(),
             controller: 'minfulnessController'
+        })
+        //Personalization
+        .when('/personalization', {
+            templateUrl: './templates/after_login/personalization.html?v='+(new Date()).valueOf(),
+            controller: 'personalizationController'
+        })
+        //Personalization: reminders
+        .when('/reminders', {
+            templateUrl: './templates/after_login/reminders.html?v='+(new Date()).valueOf(),
+            controller: 'personalizationController'
+        })
+        //Personalization: stress
+        .when('/stress', {
+            templateUrl: './templates/after_login/stress.html?v='+(new Date()).valueOf(),
+            controller: 'personalizationController'
+        })
+        //Personalization: recomendations
+        .when('/recomendations', {
+            templateUrl: './templates/after_login/recomendations.html?v='+(new Date()).valueOf(),
+            controller: 'personalizationController'
         })
 
 }]);

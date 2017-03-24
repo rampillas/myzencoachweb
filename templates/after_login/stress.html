@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>SECCIÓN PARA DETECCIÓN DE ESTRÉS</h3>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+            <table class="table table-striped col-md-6">
+                <thead>
+                <tr>
+                    <th class="text-center">Pregunta</th>
+                    <th class="text-center">Cantidad de respuestas</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="question in questions">
+                    <td class="text-center">{{question.description}}</td>
+                    <td class="text-center">{{question.possible_answers}}</td>
+                    <td class="text-center">
+                        <a href="" ng-click="seeQuestion(question)">
+                            <i class="fa fa-sticky-note">Ver respuestas</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" ng-click="deleteQuestion(question)">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
+            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
+                    data-target="#newQuestion">Nueva Pregunta</button>
+        </div>
+    </div>
+
+    <!-- Modal Add new Reminder-->
+    <div class="modal fade" id="newQuestion" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar nueva pregunta</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="descriptionQuestion">Descripción</label>
+                    <textarea type="text" class="form-control" placeholder="Descripción pregunta" required autofocus
+                              ng-model="descriptionQuestion" id="descriptionQuestion"/>
+
+                    <hr>
+                    <h4>**Agregar respuestas</h4>
+
+                    <label for="descriptionAnswer">Descripción respuesta</label>
+                    <input type="text" class="form-control" placeholder="Descripción respuesta" required autofocus
+                           ng-model="descriptionAnswer" id="descriptionAnswer">
+
+                    <br>
+                    <label for="colorId">Color</label>
+                    <select ng-model="colorId" id="colorId">
+                        <option ng-repeat="color in colors" value="{{color.value}}">{{color.name}}</option>
+                    </select>
+
+                    <br>
+                    <label for="popupMessage">Mensaje emergente</label>
+                    <input type="text" class="form-control" placeholder="Mensaje emergente" required autofocus
+                           ng-model="popupMessage" id="popupMessage">
+
+                    <a href="" ng-click="addAnwser()">
+                        <i class="fa fa-check fa-2x"></i>
+                    </a>
+
+                    <br>
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="answer in answers">
+                            <td>
+                                <h5><strong>{{answer.description}}</strong></h5>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" ng-click="saveQuestion()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal See Question Answers details-->
+    <div class="modal fade" id="seeQuestion" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Pregunta: {{currentQuestion.description}}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5><strong>Respuestas: </strong></h5>
+                    <table class="table table-striped col-md-6">
+                        <tr ng-repeat="answer in currentQuestion.questions">
+                            <td>
+                                <h5><strong>Descripción: </strong>{{answer.description}}</h5>
+                                <h5><strong>Color: </strong>{{answer.color}}</h5>
+                                <h5><strong>Mensaje Emergente: </strong>{{answer.popup_message}}</h5>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

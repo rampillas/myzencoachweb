@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>RECOMENDACIONES DEL COACH PARA LOS USUARIOS</h3>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+            <table class="table table-striped col-md-6">
+                <thead>
+                <tr>
+                    <th class="text-center">Recomendación</th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="recomendation in recomendationsArray">
+                    <td class="text-center">
+                        <a href="" ng-click="seeRecomendation(recomendation)">
+                            {{cutDescription(recomendation.description)}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" ng-click="deleteRecomendation(recomendation)">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
+            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
+                    data-target="#newRecomendation">Nueva Recomendación</button>
+        </div>
+    </div>
+
+    <!-- Modal Add new Recomendation-->
+    <div class="modal fade" id="newRecomendation" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar nueva recomendación</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="descriptionRecomendation">Recomendación</label>
+                    <textarea type="text" class="form-control" placeholder="Recomendación" required autofocus
+                              ng-model="descriptionRecomendation" id="descriptionRecomendation"/>
+
+                    <hr>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" ng-click="saveRecomendation()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal See Recomendation-->
+    <div class="modal fade" id="seeRecomendation" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Detalles</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>{{currentRecomendation.description}}</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
