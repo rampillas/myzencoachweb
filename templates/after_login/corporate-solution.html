@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>SOLUCIONES COOPERATIVAS</h3>
+        </div>
+
+        <div class="row">
+            <h6>Dilemas Ingresados por los Usuarios</h6>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+            <table class="table table-striped col-md-6">
+                <thead>
+                <tr>
+                    <th class="text-center">Quien lo Plantea</th>
+                    <th class="text-center">Titulo</th>
+                    <th class="text-center">Descripcion</th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="item in dilemas">
+                    <td class="text-center">{{item.Quien}}</td>
+                    <td class="text-center">{{item.Titulo}}</td>
+                    <td class="text-center">{{item.Descripcion}}</td>
+                    <td>
+                        <a href="" ng-click="">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
+            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
+                    data-target="#newDilema">Plantea Tu Dilema</button>
+        </div>
+    </div>
+
+    <!-- Modal Add New Video-->
+    <div class="modal fade" id="newDilema" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar un Dilema</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Quien lo Plantea" required autofocus
+                           ng-model="dilema.usuario">
+
+                    <input type="text" class="form-control" placeholder="Titulo del Dilema" required autofocus
+                           ng-model="dilema.titulo">
+
+                    <input type="text" class="form-control" placeholder="Descripcion del Dilema" required autofocus
+                           ng-model="dilema.descripcion">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-lg btn-block btn-mzc" ng-click="addDilema()">Guardar</button>
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

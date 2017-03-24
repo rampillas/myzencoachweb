@@ -1,6 +1,7 @@
 var main = angular.module("mainModule",["ngRoute","homeModule","essentialInformationModule","minfulnessModule",
     "authorizationModule","storageModule","encodeModule","videosModule","surveysModule","plansModule",
-    "personalizationModule","remindersModule","usersModule", "stressModule","recomendationsModule"]);
+    "personalizationModule","remindersModule","usersModule", "stressModule","recomendationsModule",
+    "solutionModule" ,"corporateSolutionModule"]);
 
 //Set base url
 main.provider('url', function urlProvider() {
@@ -93,6 +94,11 @@ main.config(['$routeProvider','urlProvider','CONSTANTS', function($routeProvider
             controller: 'personalizationController'
         })
 
+        //Corporate-Solutions
+        .when('/solutions', {
+            templateUrl: './templates/after_login/corporate-solution.html?v='+(new Date()).valueOf(),
+            controller: 'corporateSolutionController'
+        })
 }]);
 
 main.controller("mainController",function($scope,$rootScope,$location,authorization,sessionStorage,encodeService){
