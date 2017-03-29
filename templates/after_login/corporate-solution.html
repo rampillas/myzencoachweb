@@ -12,21 +12,21 @@
             <table class="table table-striped col-md-6">
                 <thead>
                 <tr>
-                    <th class="text-center">Quien lo Plantea</th>
+                    <th class="text-center">Usuario</th>
                     <th class="text-center">Titulo</th>
-                    <th class="text-center">Descripcion</th>
+                    <th class="text-center">Fecha</th>
                     <th class="text-center"></th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr ng-repeat="item in dilemas">
-                    <td class="text-center">{{item.Quien}}</td>
-                    <td class="text-center">{{item.Titulo}}</td>
-                    <td class="text-center">{{item.Descripcion}}</td>
+                <tr ng-repeat="dilemma in dilemmas">
+                    <td class="text-center">{{dilemma.nick_user}}</td>
+                    <td class="text-center">{{dilemma.title}}</td>
+                    <td class="text-center">{{dilemma.date | date:'yyyy/MM/dd'}}</td>
                     <td>
-                        <a href="" ng-click="">
-                            <i class="fa fa-bars"></i>
+                        <a href="" ng-click="seeDilemma(dilemma)">
+                            Ver detalles
                         </a>
                     </td>
                 </tr>
@@ -35,36 +35,53 @@
         </div>
 
 
-        <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
-            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
-                    data-target="#newDilema">Plantea Tu Dilema</button>
-        </div>
-    </div>
+        <!-- Modal See Details from Dilemma-->
+        <div class="modal fade" id="seeDilemma" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Dilema: {{currentDilemma.title}}</h4>
+                    </div>
+                    <div class="modal-body">
 
-    <!-- Modal Add New Video-->
-    <div class="modal fade" id="newDilema" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content col-md-offset-3 col-md-6 col-md-offset-3">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Agregar un Dilema</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Quien lo Plantea" required autofocus
-                           ng-model="dilema.usuario">
+                        <h4><strong>Creador:</strong> {{currentDilemma.nick_user}}</h4>
+                        <h4><strong>Fecha de creación:</strong> {{currentDilemma.date}}</h4>
+                        <hr>
+                        <h4><strong>Descripción:</strong> {{currentDilemma.description}}</h4>
 
-                    <input type="text" class="form-control" placeholder="Titulo del Dilema" required autofocus
-                           ng-model="dilema.titulo">
-
-                    <input type="text" class="form-control" placeholder="Descripcion del Dilema" required autofocus
-                           ng-model="dilema.descripcion">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn-lg btn-block btn-mzc" ng-click="addDilema()">Guardar</button>
-                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cancelar</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-lg btn-block btn-mzc" ng-click="aprobeDilemma()">Aprobar</button>
+                        <button type="button" class="btn-lg btn-block btn-mzc" ng-click="refuseDilemma()">Rechazar</button>
+                        <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal See Details from Dilemma-->
+        <div class="modal fade" id="changeDilemma" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Dilema: {{currentDilemma.title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Escribe el motivo por el cuál estás rechanzado el Dilema:</h4>
+                        <textarea type="text" class="form-control" placeholder="Motivo del rechazo" required autofocus
+                                  ng-model="reason"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-lg btn-block btn-mzc" ng-click="refuse()">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </div>
