@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3>OCIO Y TIEMPO LIBRE</h3>
+        </div>
+
+        <!-- HEADER -->
+        <br>
+        <div class="row">
+            <input class="col-md-offset-4 col-md-2"
+                   type="text" class="form-control" placeholder="Título del evento" required autofocus
+                   ng-model="title">
+
+            <div class="col-md-2">
+                <label for="categoryId">Categoría</label>
+                <select ng-model="categoryId" id="categoryId">
+                    <option ng-repeat="category in categories" value="{{category.value}}">{{category.name}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="seeInterests()">
+                    <i class="fa fa-user"></i>
+                    Interéses del Usuario
+                </button>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <textarea class="col-md-offset-4 col-md-4 col-md-offset-4"
+                      required autofocus placeholder="Descripción del evento..."
+                      ng-model="event"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-5 col-md-2 col-md-offset-5">
+                <button type="button" class="btn-lg btn-block btn-mzc"
+                        ng-click="publishEvent()">Publicar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <h5>Eventos publicados</h5>
+        </div>
+
+    </div>
+
+    <!-- LIST OF EVENTS -->
+    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+        <div class="panel panel-default bootcards-file" ng-repeat="event in events">
+            <div class="panel-heading">
+                <h3 class="panel-title">Evento</h3>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item" style="padding-left:0px;">
+                    <h4 class="list-group-item-heading">
+                        <a href="">{{splitUser(event.user)}}</a>
+                    </h4>
+                    <p class="list-group-item-text"><strong>{{event.category}}</strong></p>
+                    <p class="list-group-item-text"><strong>{{event.date | date:'yyyy/MM/dd'}}</strong></p>
+                </div>
+                <div class="list-group-item">
+                    <p class="list-group-item-text"><strong>{{event.title}}</strong></p>
+                </div>
+                <div class="list-group-item">
+                    <p class="list-group-item-text">{{event.description}}</p>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <small class="pull-left">
+                    <button class="btn btn-default" ng-click="addLike(event)"
+                        ng-show="!event.user_like.is_liked">
+                        {{event.likes}}
+                        <i class="fa fa-heart"></i>
+                        Me Gusta
+                    </button>
+
+                    <button class="btn btn-default" ng-click="quitLike(event)"
+                            ng-show="event.user_like.is_liked">
+                        {{event.likes}}
+                        <i class="fa fa-heart" style="color: red;"></i>
+                        Me Gusta
+                    </button>
+                </small>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal See Interests from User-->
+    <div class="modal fade" id="seeInterests" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Interéses del Usuario</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div ng-repeat="interest in interestsUser">
+                        <input type="checkbox"
+                               data-checklist-model="user.interests"
+                               data-checklist-value="interest"> {{interest.name}}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" ng-click="saveInterests()">Guardar</button>
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,11 +5,12 @@
     <title>Trabajo de Fin de Master</title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootcards-desktop.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
 
-  <body ng-app="mainModule" ng-controller="mainController">
+  <body ng-app="mainModule" ng-controller="mainController" style="padding-top:0px;">
     <!-- Home Menu-->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom" ng-if="!isLoged">
       <div class="container">
@@ -71,7 +72,7 @@
               <a href="#/minfulness">Bienestar/Minfulness</a>
             </li>
             <li class="page-scroll">
-              <a href="">Ocio y Tiempo Libre</a>
+              <a href="#/freetime">Ocio y Tiempo Libre</a>
             </li>
             <li class="page-scroll">
               <a href="" ng-click="logout()">Logout</a>
@@ -88,8 +89,10 @@
 
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootcards.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
+    <script src="js/checklist-model.js"></script>
 
     <script src="app/main.js"></script>
     <script src="app/controllers/home.js"></script>
@@ -97,6 +100,7 @@
     <script src="app/controllers/after_login/minfulness.js"></script>
     <script src="app/controllers/after_login/personalization.js"></script>
     <script src="app/controllers/after_login/corporate-solution.js"></script>
+    <script src="app/controllers/after_login/freetime.js"></script>
     <script src="app/models/authorization.js"></script>
     <script src="app/services/storage.js"></script>
     <script src="app/services/encode.js"></script>
@@ -108,5 +112,6 @@
     <script src="app/models/stress.js"></script>
     <script src="app/models/recomendations.js"></script>
     <script src="app/models/solutions.js"></script>
+    <script src="app/models/events.js"></script>
   </body>
 </html>
