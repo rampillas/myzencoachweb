@@ -7,6 +7,8 @@ essential.controller("essentialInformationController",function($scope,$location,
     $scope.urlVideo = "";
     $scope.dateVideo = "";
     $scope.photoUrl = "";
+    $scope.next = "";
+    $scope.previous = "";
 
     $scope.clean = function () {
         $scope.nameVideo = "";
@@ -19,6 +21,8 @@ essential.controller("essentialInformationController",function($scope,$location,
         videos.getVideos()
             .success(function (r) {
                 $scope.videos = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -132,6 +136,30 @@ essential.controller("essentialInformationController",function($scope,$location,
             .error(function (e) {
                 console.clear();
                 alert("Hubo un error inesperado, intenta nuevamente");
+            })
+    }
+
+    $scope.nextPage = function () {
+        videos.nextOrPreviousVideos($scope.next)
+            .success(function (r) {
+                $scope.videos = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.previousPage = function () {
+        videos.nextOrPreviousVideos($scope.previous)
+            .success(function (r) {
+                $scope.videos = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
             })
     }
     

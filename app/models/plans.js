@@ -14,6 +14,9 @@ angular.module('plansModule').factory("plans",function($http,url){
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 });
+        },
+        nextOrPreviousPlans: function (page) {
+            return $http.get(page);
         }
     };
     return plans;

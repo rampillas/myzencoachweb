@@ -9,6 +9,8 @@ personalization.controller("personalizationController",function($scope,$location
     $scope.minutes = [];
     $scope.frequencies = [];
     $scope.users = [];
+    $scope.nextReminders = "";
+    $scope.previousReminders = "";
 
     $scope.title = "";
     $scope.subtitle = "";
@@ -25,6 +27,8 @@ personalization.controller("personalizationController",function($scope,$location
         reminders.getReminders('user')
             .success(function (r) {
                 $scope.allReminders = r.results;
+                $scope.nextReminders = r.next;
+                $scope.previousReminders = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -125,6 +129,29 @@ personalization.controller("personalizationController",function($scope,$location
             })
     }
 
+    $scope.nextPageReminders = function () {
+        reminders.nextOrPreviousReminders($scope.nextReminders)
+            .success(function (r) {
+                $scope.allReminders = r.results;
+                $scope.nextReminders = r.next;
+                $scope.previousReminders = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.previousPageReminders = function () {
+        reminders.nextOrPreviousReminders($scope.previousReminders)
+            .success(function (r) {
+                $scope.allReminders = r.results;
+                $scope.nextReminders = r.next;
+                $scope.previousReminders = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
 
     /**** STRESS DETECTION *********/
     $scope.questions = [];
@@ -136,10 +163,15 @@ personalization.controller("personalizationController",function($scope,$location
     $scope.popupMessage = "";
     $scope.descriptionQuestion = "";
 
+    $scope.nextStress = "";
+    $scope.previousStress = "";
+
     $scope.getAllQuestions = function () {
         stress.getQuestions()
             .success(function (r) {
                 $scope.questions = r.results;
+                $scope.nextStress = r.next;
+                $scope.previousStress = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -206,15 +238,43 @@ personalization.controller("personalizationController",function($scope,$location
             })
     }
 
+    $scope.nextPageStress = function () {
+        stress.nextOrPreviousQuestions($scope.nextStress)
+            .success(function (r) {
+                $scope.questions = r.results;
+                $scope.nextStress = r.next;
+                $scope.previousStress = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.previousPageStress = function () {
+        stress.nextOrPreviousQuestions($scope.previousStress)
+            .success(function (r) {
+                $scope.questions = r.results;
+                $scope.nextStress = r.next;
+                $scope.previousStress = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
 
     /**** RECOMENDATIONS *********/
     $scope.recomendationsArray = [];
     $scope.descriptionRecomendation = "";
 
+    $scope.nextRecomendations = "";
+    $scope.previousRecomendations = "";
+
     $scope.getAllRecomendations = function () {
         recomendations.getRecomendations('user')
             .success(function (r) {
                 $scope.recomendationsArray = r.results;
+                $scope.nextRecomendations = r.next;
+                $scope.previousRecomendations = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -255,6 +315,30 @@ personalization.controller("personalizationController",function($scope,$location
         })
             .success(function (r) {
                 $scope.getAllRecomendations();
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.nextPageRecomendations = function () {
+        recomendations.nextOrPreviousRecomendations($scope.nextRecomendations)
+            .success(function (r) {
+                $scope.recomendationsArray = r.results;
+                $scope.nextRecomendations = r.next;
+                $scope.previousRecomendations = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.previousPageRecomendations = function () {
+        recomendations.nextOrPreviousRecomendations($scope.previousRecomendations)
+            .success(function (r) {
+                $scope.recomendationsArray = r.results;
+                $scope.nextRecomendations = r.next;
+                $scope.previousRecomendations = r.previous;
             })
             .error(function (e) {
                 console.clear();

@@ -14,6 +14,9 @@ angular.module('videosModule').factory("videos",function($http,url){
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 });
+        },
+        nextOrPreviousVideos: function (page) {
+            return $http.get(page);
         }
     };
     return videos;

@@ -14,6 +14,9 @@ angular.module('recomendationsModule').factory("recomendations",function($http,u
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 });
+        },
+        nextOrPreviousRecomendations: function (page) {
+            return $http.post(page);
         }
     };
     return recomendations;

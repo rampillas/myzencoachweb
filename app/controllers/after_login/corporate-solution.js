@@ -4,11 +4,15 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
 
     $scope.dilemmas = [];
     $scope.reason = "";
+    $scope.next = "";
+    $scope.previous = "";
 
     $scope.getDilemas = function () {
         solutions.getDilemasByState('user',{state:"waitingForAnswer"})
             .success(function (r) {
                 $scope.dilemmas = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -75,6 +79,30 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
         }
         else
             alert("Escribe el motivo por favor");
+    }
+    
+    $scope.nextPage = function () {
+        solutions.nextOrPreviousDilemmas($scope.next,{state:"waitingForAnswer"})
+            .success(function (r) {
+                $scope.dilemmas = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+    
+    $scope.previousPage = function () {
+        solutions.nextOrPreviousDilemmas($scope.previous,{state:"waitingForAnswer"})
+            .success(function (r) {
+                $scope.dilemmas = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
     }
 
     $rootScope.verifyLogin();

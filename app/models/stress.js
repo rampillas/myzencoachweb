@@ -14,6 +14,9 @@ angular.module('stressModule').factory("stress",function($http,url){
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 });
+        },
+        nextOrPreviousQuestions: function (page) {
+            return $http.get(page);
         }
     };
     return stress;

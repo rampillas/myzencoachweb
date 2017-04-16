@@ -7,6 +7,8 @@ essential.controller("minfulnessController",function($scope,$location,$rootScope
     $scope.plans = [];
     $scope.description = "";
     $scope.date = "";
+    $scope.next = "";
+    $scope.previous = "";
 
     $scope.selectedWeek = "";
     $scope.descriptionExercise = "";
@@ -21,6 +23,8 @@ essential.controller("minfulnessController",function($scope,$location,$rootScope
         plans.getPlans()
             .success(function (r) {
                 $scope.plansData = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
             })
             .error(function (e) {
                 console.clear();
@@ -112,6 +116,31 @@ essential.controller("minfulnessController",function($scope,$location,$rootScope
             .error(function (e) {
                 console.clear();
                 alert("Hubo un error inesperado, intenta nuevamente");
+            })
+    }
+
+
+    $scope.nextPage = function () {
+        plans.nextOrPreviousPlans($scope.next)
+            .success(function (r) {
+                $scope.plansData = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
+            })
+    }
+
+    $scope.previousPage = function () {
+        plans.nextOrPreviousPlans($scope.previous)
+            .success(function (r) {
+                $scope.plansData = r.results;
+                $scope.next = r.next;
+                $scope.previous = r.previous;
+            })
+            .error(function (e) {
+                console.clear();
             })
     }
 

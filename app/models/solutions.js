@@ -10,6 +10,9 @@ angular.module('solutionModule').factory("solutions",function($http,url){
         },
         changeDilemma: function (username,data) {
             return $http.post(url.get() + '/solutions/dilemmas/'+ username +'/changeDilemma/',data);
+        },
+        nextOrPreviousDilemmas: function (page,data) {
+            return $http.post(page,data);
         }
     };
     return dilemas;

@@ -14,6 +14,9 @@ angular.module('remindersModule').factory("reminders",function($http,url){
                     data: data,
                     headers: {'Content-Type': 'application/json'}
                 });
+        },
+        nextOrPreviousReminders: function (page) {
+            return $http.post(page);
         }
     };
     return reminders;
