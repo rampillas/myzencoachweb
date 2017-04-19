@@ -88,6 +88,7 @@ home.controller("homeController",function($scope,$location,$rootScope,authorizat
             })
                 .success(function (r) {
                     sessionStorage.setItem('tfm:access_token',encodeService.encodeUtf8base64(r.access_token));
+                    sessionStorage.setItem('tfm:username',encodeService.encodeUtf8base64($scope.username));
                     authorization.setAuthHeaders(r.access_token);
                     $rootScope.isLoged = true;
                     $location.path('essential');

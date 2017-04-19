@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <h3 style="color:#d05821;">Frecuencia de acceso a la aplicación</h3>
+        </div>
+
+        <div class="row">
+            <h5>*Para ver los detalles de un usuario, dar click en el username</h5>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-6 col-md-offset-3">
+            <table class="table table-striped col-md-6">
+                <thead>
+                <tr>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Número de conexiones a la aplicación movil</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="con in connections">
+                    <td class="text-center">
+                        <a href="" ng-click="seeDetailsUserConnections(con)">
+                            {{con.username}}
+                        </a>
+                    </td>
+                    <td class="text-center">{{con.connections}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal See Details from User Connections-->
+    <div class="modal fade" id="detailUserConnections" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Usuario: {{currentUser.username}}</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped col-md-6">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Username</th>
+                            <th class="text-center">Fecha de conexión a la aplicación movil</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="con in userConnections">
+                            <td class="text-center">
+                                {{con.user}}
+                            </td>
+                            <td class="text-center">{{con.date | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-lg btn-block btn-mzc" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

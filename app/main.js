@@ -1,7 +1,7 @@
 var main = angular.module("mainModule",["ngRoute","homeModule","essentialInformationModule","minfulnessModule",
     "authorizationModule","storageModule","encodeModule","videosModule","surveysModule","plansModule",
     "personalizationModule","remindersModule","usersModule", "stressModule","recomendationsModule",
-    "solutionModule" ,"corporateSolutionModule","freeTimeModule", "eventsModule"]);
+    "solutionModule" ,"corporateSolutionModule","freeTimeModule", "eventsModule", "usersFrecuencyModule"]);
 
 //Set base url
 main.provider('url', function urlProvider() {
@@ -22,8 +22,10 @@ main.provider('url', function urlProvider() {
 main.constant('CONSTANTS', {
     //Backend information
     url_server: 'http://demendezr.pythonanywhere.com',
+    //url_server: 'http://192.168.0.4:8000',
     clientId: 'clientweb2231',
-    clientSecret: 'secretweb2231'
+    clientSecret: 'secretweb2231',
+    numberConnectionsUser: 5
 });
 
 //Set config
@@ -102,6 +104,16 @@ main.config(['$routeProvider','urlProvider','CONSTANTS', function($routeProvider
         .when('/freetime', {
             templateUrl: './templates/after_login/freetime.html?v='+(new Date()).valueOf(),
             controller: 'freeTimeController'
+        })
+        //Reports
+        .when('/reports', {
+            templateUrl: './templates/after_login/reports/reports.html?v='+(new Date()).valueOf(),
+            controller: 'reportsController'
+        })
+        //Users Frecuency
+        .when('/frecuency', {
+            templateUrl: './templates/after_login/reports/users_frecuency.html?v='+(new Date()).valueOf(),
+            controller: 'usersFrecuencyController'
         })
 }]);
 
