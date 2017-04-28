@@ -89,12 +89,12 @@
                 <h4 class="text-left">
                     Comentarios
 
-                    <a href="" data-toggle="collapse" data-target="#commentsEvent">
+                    <a href="" data-toggle="collapse" data-target="#commentsEvent{{ $index + 1 }}">
                         <i class="fa fa-sort-down fa-2x"></i>
                     </a>
                 </h4>
 
-                <div id="commentsEvent" class="collapse list-group">
+                <div id="commentsEvent{{ $index + 1 }}" class="collapse list-group">
                     <div class="row">
                         <textarea class="col-md-6"
                                   required autofocus placeholder="Descripción del comentario..."
