@@ -57,6 +57,30 @@ corporate.controller("freeTimeController",function($scope,$rootScope,events){
             alert("Todos los campos son obligatorios");
     }
 
+    $scope.publishComment = function (currentEvent) {
+        if(currentEvent.eventComment != "")
+        {
+            var date = new Date();
+            date = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+
+            events.registerEventComment('user',{
+                user_owner: $scope.splitUser(currentEvent.user),
+                title: currentEvent.title,
+                date: date,
+                description: currentEvent.eventComment
+            })
+                .success(function (r) {
+                    event.eventComment = "";
+                    $scope.getAllEvents();
+                })
+                .error(function (e) {
+                    console.clear();
+                })
+        }
+        else
+            alert("Escribe el comentario por favor");
+    }
+
     $scope.addLike = function (currentEvent) {
         events.registerLikeToEvent('user',{
             user_owner: $scope.splitUser(currentEvent.user),

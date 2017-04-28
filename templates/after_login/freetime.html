@@ -84,6 +84,39 @@
                         Me Gusta
                     </button>
                 </small>
+
+                <br><br>
+                <h4 class="text-left">
+                    Comentarios
+
+                    <a href="" data-toggle="collapse" data-target="#commentsEvent">
+                        <i class="fa fa-sort-down fa-2x"></i>
+                    </a>
+                </h4>
+
+                <div id="commentsEvent" class="collapse list-group">
+                    <div class="row">
+                        <textarea class="col-md-6"
+                                  required autofocus placeholder="Descripción del comentario..."
+                                  ng-model="event.eventComment"></textarea>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn-lg btn-block btn-mzc"
+                                    ng-click="publishComment(event)">Comentar</button>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div ng-repeat="comment in event.comments">
+                        <div class="list-group-item">
+                            <p class="list-group-item-text">{{splitUser(comment.user)}}</p>
+                            <p class="list-group-item-text">{{comment.description}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

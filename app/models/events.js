@@ -7,6 +7,9 @@ angular.module('eventsModule').factory("events",function($http,url){
         registerEvent: function (data) {
             return $http.post(url.get() + '/freetime/events/',data);
         },
+        registerEventComment: function (username,data) {
+            return $http.post(url.get() + '/freetime/events/'+ username +'/addCommentToEvent/',data);
+        },
         registerLikeToEvent: function (username,data) {
             return $http.post(url.get() + '/freetime/events/'+ username +'/addLikeToEvent/', data);
         },

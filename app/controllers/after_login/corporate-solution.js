@@ -23,7 +23,7 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
         $scope.currentDilemma = dilemma;
 
         var date = new Date($scope.currentDilemma.date);
-        date = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+        //date = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
         $scope.currentDilemma.date = date;
         jQuery("#seeDilemma").modal("show");
     }
