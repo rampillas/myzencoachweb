@@ -105,8 +105,7 @@ personalization.controller("personalizationController",function($scope,$location
                 .success(function (r) {
                     $scope.cleanRemindersValues();
                     $scope.getAllReminders();
-                    $('#newReminder').hide();
-                    $('.modal-backdrop').hide();
+                    $("#newReminder").modal('hide');
                 })
                 .error(function (e) {
                     console.clear();
@@ -215,8 +214,7 @@ personalization.controller("personalizationController",function($scope,$location
                     $scope.descriptionQuestion = "";
                     $scope.answers = [];
                     $scope.getAllQuestions();
-                    $('#newQuestion').hide();
-                    $('.modal-backdrop').hide();
+                    $("#newQuestion").modal('hide');
                 })
                 .error(function (e) {
                     console.clear();
@@ -298,8 +296,7 @@ personalization.controller("personalizationController",function($scope,$location
                 .success(function (r) {
                     $scope.descriptionRecomendation = "";
                     $scope.getAllRecomendations();
-                    $('#newRecomendation').hide();
-                    $('.modal-backdrop').hide();
+                    $("#newRecomendation").modal('hide');
                 })
                 .error(function (e) {
                     console.clear();

@@ -141,8 +141,7 @@ corporate.controller("freeTimeController",function($scope,$rootScope,events){
         })
             .success(function (r) {
                 $scope.getAllEvents();
-                $('#seeInterests').hide();
-                $('.modal-backdrop').hide();
+                $("#seeInterests").modal('hide');
             })
             .error(function (e) {
                 console.clear();

@@ -78,8 +78,7 @@ essential.controller("minfulnessController",function($scope,$location,$rootScope
             plans.registerPlan(data)
                 .success(function (r) {
                     $scope.getPlans();
-                    $('#newPlan').hide();
-                    $('.modal-backdrop').hide();
+                    $("#newPlan").modal('hide');
                     $scope.description = "";
                     $scope.date = "";
                     $scope.weeks = [];

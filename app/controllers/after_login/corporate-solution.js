@@ -37,8 +37,7 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
             })
             .success(function (r) {
                 $scope.getDilemas();
-                $('#seeDilemma').hide();
-                $('.modal-backdrop').hide();
+                $("#seeDilemma").modal('hide');
             })
             .error(function (e) {
                 console.clear();
@@ -46,8 +45,7 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
     }
 
     $scope.refuseDilemma = function () {
-        $('#seeDilemma').hide();
-        $('.modal-backdrop').hide();
+        $("#seeDilemma").modal('hide');
         
         jQuery("#changeDilemma").modal("show");
     }
@@ -70,8 +68,7 @@ corporate.controller("corporateSolutionController",function($scope,$rootScope,so
                     $scope.reason = "";
                     $scope.getDilemas();
 
-                    $('#changeDilemma').hide();
-                    $('.modal-backdrop').hide();
+                    $("#changeDilemma").modal('hide');
                 })
                 .error(function (e) {
                     console.clear();

@@ -10,6 +10,8 @@ essential.controller("essentialInformationController",function($scope,$location,
     $scope.next = "";
     $scope.previous = "";
 
+    $scope.isSavedVideo = false;
+
     $scope.clean = function () {
         $scope.nameVideo = "";
         $scope.urlVideo = "";
@@ -31,6 +33,7 @@ essential.controller("essentialInformationController",function($scope,$location,
     
     $scope.saveVideo = function () {
         if($scope.nameVideo != "" && $scope.urlVideo != "" && $scope.dateVideo != "" && $scope.photoUrl != ""){
+            $scope.isSavedVideo = true;
             var date = $scope.dateVideo.getFullYear() + '-' + $scope.dateVideo.getMonth() + '-' + $scope.dateVideo.getDay();
             videos.registerVideo({
                 name: $scope.nameVideo,
@@ -42,8 +45,8 @@ essential.controller("essentialInformationController",function($scope,$location,
             })
                 .success(function (r) {
                     $scope.getVideosUser();
-                    $('#newVideo').hide();
-                    $('.modal-backdrop').hide();
+                    $("#newVideo").modal('hide');
+                    $scope.isSavedVideo = false;
                     $scope.clean();
                 })
                 .error(function (e) {
@@ -103,8 +106,7 @@ essential.controller("essentialInformationController",function($scope,$location,
                 surveys.registerSurvey(data)
                     .success(function (r) {
                         $scope.getVideosUser();
-                        $('#addSurvey').hide();
-                        $('.modal-backdrop').hide();
+                        $("#addSurvey").modal('hide');
                     })
                     .error(function (e) {
                         console.clear();
