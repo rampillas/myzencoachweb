@@ -63,6 +63,7 @@ essential.controller("essentialInformationController",function($scope,$location,
         $scope.isFinishQuestion = false;
         $scope.currentAnswers = [];
         $scope.currentQuestions = [];
+        $('#helpQuestions').trigger('click');
         jQuery("#addSurvey").modal("show");
     }
 

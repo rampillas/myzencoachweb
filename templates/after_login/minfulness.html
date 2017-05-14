@@ -48,8 +48,9 @@
         </div>
 
         <div class="row col-md-offset-5 col-md-2 col-md-offset-5">
-            <button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
-                    data-target="#newPlan">Nuevo plan</button>
+            <!--<button type="button" class="btn-lg btn-block btn-mzc" data-toggle="modal"
+                    data-target="#newPlan">Nuevo plan</button>-->
+            <button type="button" class="btn-lg btn-block btn-mzc" ng-click="addNewPlan();">Nuevo plan</button>
         </div>
     </div>
 
@@ -73,7 +74,7 @@
                     <hr>
                     <h4>**Agregar Ejercicios (Un plan debe tener 8 semanas)</h4>
 
-                    <a href="" data-toggle="collapse" data-target="#helpExercise">
+                    <a href="" data-toggle="collapse" data-target="#helpExercise" id="helpExercices">
                         <i class="fa fa-info-circle"> Ayuda</i>
                     </a>
                     <div id="helpExercise" class="collapse">

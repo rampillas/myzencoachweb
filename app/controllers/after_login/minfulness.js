@@ -40,6 +40,11 @@ essential.controller("minfulnessController",function($scope,$location,$rootScope
         $scope.question = "";
     }
 
+    $scope.addNewPlan = function () {
+        $('#helpExercices').trigger('click');
+        jQuery("#newPlan").modal("show");
+    }
+
     $scope.addQuestion = function () {
         if($scope.question != undefined && $scope.question != ""){
             $scope.questions.push({question: $scope.question});
